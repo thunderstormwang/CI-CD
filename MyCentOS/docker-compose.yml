@@ -17,7 +17,17 @@ services:
       context: remote-host
     restart: always
     volumes:
-      - $PWD/remote-host_data:/tmp/hi
+      - $PWD/remote-host_data:/var/project
+    networks:
+      - net
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - $PWD/nexus_data:/nexus-data
     networks:
       - net
 networks:
