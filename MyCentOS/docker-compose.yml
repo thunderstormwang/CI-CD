@@ -16,6 +16,8 @@ services:
     build:
       context: remote-host
     restart: always
+    volumes:
+      - $PWD/remote-host_data:/tmp/hi
     networks:
       - net
 networks:
