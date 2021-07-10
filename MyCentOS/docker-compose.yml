@@ -26,6 +26,7 @@ services:
     restart: always
     ports:
       - "8081:8081"
+      - "8082:8082"
     volumes:
       - $PWD/nexus_data:/nexus-data
     networks:
