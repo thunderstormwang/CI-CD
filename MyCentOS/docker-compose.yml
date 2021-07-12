@@ -18,6 +18,18 @@ services:
     restart: always
     volumes:
       - $PWD/remote-host_data:/var/project
+      - /var/run/docker.sock:/var/run/docker.sock 
+    networks:
+      - net
+  ubuntu-remote_host:
+    container_name: ubuntu-remote-host
+    image: ubuntu-remote-host
+    build:
+      context: ubuntu-remote-host
+    restart: always
+    volumes:
+      - $PWD/ubuntu-remote-host_data:/var/project
+      - /var/run/docker.sock:/var/run/docker.sock 
     networks:
       - net
   nexus:
