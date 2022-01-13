@@ -1,0 +1,39 @@
+---
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts-jdk11
+    restart: always
+    logging:
+      options:
+        max-size: 100m
+        max-file: "1"
+    networks:
+      - net
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins:/var/jenkins_home
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    logging:
+      options:
+        max-size: 100m
+        max-file: "1"
+    networks:
+      - net
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - jenkins
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+
+networks:
+  net:
